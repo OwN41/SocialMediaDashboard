@@ -1,0 +1,1 @@
+import RegisterHandler from "../helpers/registerHandler";

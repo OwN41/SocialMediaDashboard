@@ -47,20 +47,7 @@
     </div>
 </template>
 <script>
-        const APIKey = 'AIzaSyBKttcolANo2FUK6qB6Mbw3JoO33T76Gs0';
-        const Userid = 'UC3d8fjUSRSsMfmyltyz33Vw';
-        const subscriberCount= document.getElementById('subscriberCount');
-        const viewCount = document.getElementById('viewCount');
-        let getdata = () => {
-            fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${Userid}&key=${APIKey}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                subscriberCount.innerHTML = data.items[0].statistics.subscriberCount;
-                viewCount.innerHTML = data.items[0].statistics.viewCount;
-            });
-        };
-        getdata();
+        
 </script>
 <style scoped>
 body {

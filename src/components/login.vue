@@ -1,27 +1,58 @@
 <template >
     <div class="container">
         <h1>Login/Register</h1>
+
         <label for="uname"><b>E-Mail</b></label>
-        <input type="text" placeholder="E-Mail" name="uname" required>
-    
+        <label v-if="!isEmailValid" for="email" class="validation_password" >E-Mail must be valid</label>
+        <input v-model="email" @change="validateEmail" type="text" placeholder="E-Mail" name="email" required>
+        
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <label v-if="!isPasswordValid" for="psw" class="validation_password" >Password must be 6 characters or longer</label>
+        <input v-model="password" @change="validatePassword" type="password" placeholder="Enter Password" name="psw" required>
         
         <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-        
-        <button type="submit" class="login-button">Login/Regsiter</button>
+        <label v-if="!isRepeatPasswordValid" for="psw-repeat" class="validation_password">Password must be the same as above</label>
+        <input v-model="repeatPassword" @change="validateRepeatPassword" type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
         
         <form>
             <input type="checkbox" id="register1" name="register" value="Register">
             <label for="regsiter1"> Registrieren</label><br>
         </form>
+        
+        <button type="submit" class="login-button">Login/Regsiter</button>
+        
 
     </div>
 </template>
 
 <script setup>
-    
+import { ref } from "vue";
+import RegisterHandler from "../helpers/registerHandler";
+
+const temp = new RegisterHandler();
+
+const email = ref(null);
+const password = ref(null);
+const repeatPassword = ref(null);
+
+const isEmailValid = ref(false);
+const isPasswordValid = ref(false);
+const isRepeatPasswordValid = ref(false);
+
+const isRegister = ref(false);
+
+function validateEmail() {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    isEmailValid.value = re.test(email.value);
+}
+
+function validatePassword(){
+    isPasswordValid.value = password.value.length >= 6;
+}
+
+function validateRepeatPassword(){
+    isRepeatPasswordValid.value = repeatPassword.value == password.value;
+}
 
 </script>
 
@@ -37,6 +68,13 @@
 
 .main {
     padding: 2em;
+}
+
+.validation_password{
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    color: red;
 }
 
 input[type=text], input[type=password] {
