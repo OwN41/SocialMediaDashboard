@@ -6,8 +6,6 @@
 <template>
   <body>
     <login/>
-    <register/>
-    <dashboard/>
   </body>
   
   
@@ -21,7 +19,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url('./components/Hintergrund2.jpg') repeat;
+    
     background-size: cover;
 }
 </style>

@@ -1,13 +1,18 @@
 <template >
     <div class="container">
-        <h1>Login</h1>
+        <h1>Login/Register</h1>
         <label for="uname"><b>E-Mail</b></label>
         <input type="text" placeholder="E-Mail" name="uname" required>
     
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
-        <button type="submit" class="login-button">Login</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+        <button type="submit" class="login-button">Login/Regsiter</button>
+        <form>
+            <input type="checkbox" id="register1" name="register" value="Register">
+            <label for="regsiter1"> Registrieren</label><br>
+        </form>
 
     </div>
 </template>
@@ -17,16 +22,6 @@ export default {
 }
 </script>
 <style scoped >
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: url('Hintergrund2.jpg') repeat;
-    background-size: cover;
-}
 
 .header {
     background-color: #1900ff;
@@ -60,8 +55,9 @@ input[type=text], input[type=password] {
 }
 
 .login-button {
-    background-color: rgb(152, 219, 241);
-    color: white;
+    background-color: rgb(66, 158, 189);
+    color: black ;
+    font-weight: bold;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -73,7 +69,7 @@ input[type=text], input[type=password] {
 }
 
 .login-button:hover {
-    background-color: rgb(152, 219, 241);
+    background-color: rgb(40, 150, 187);
 }
 
 button:hover {
@@ -97,7 +93,11 @@ img.avatar {
     flex-direction: column;
     text-align: center;
     margin-top: 5%;
-    background-color: white;
+    background-color: #e6e6e6;
+    box-shadow: 5px 5px 15px -1px #6B6B6B;
+    border-color: #d1d1d1;
+    border-style: solid;
+    border-width: 1px;
     padding: 16px;
     border-radius: 25px;
     gap:20px;
