@@ -1,17 +1,25 @@
 
 export default class RegistryHandler{
-    constructor(){}    
+    constructor(){}
 
-    readRegistry() {
-        let temp  = [];
-        fetch("http://localhost:5173/src/helpers/registry.json")
+    /**
+     * 
+     */
+    async readRegistry() {
+        let registry = undefined;
+        await fetch("http://localhost:5173/src/helpers/registry.json")
         .then((res) => res.json())
         .then((json) => {
-            temp = json
-            return json;
-        });    
+            registry = json;
+        });
+        
+
+        return registry
     }
 
+    /**
+     * 
+     */
     writeRegistry() {
         
     }
