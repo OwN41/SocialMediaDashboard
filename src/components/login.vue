@@ -12,14 +12,14 @@
 
         <label for="psw-repeat"><b>Repeat Password</b></label>
         <label v-if="!isRepeatPasswordValid" for="psw-repeat" class="validation_password">Password must be the same as above</label>
-        <input v-model="repeatPassword" @change="validateRepeatPassword" type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required disabled>
+        <input v-model="repeatPassword" @change="validateRepeatPassword" type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required :disabled="!isRegister">
 
         <form>
-            <input type="checkbox" id="register1" name="register" value="Register">
-            <label for="regsiter1"> Registrieren</label><br>
+            <input type="checkbox" id="register" name="register" value="Register" v-model="isRegister">
+            <label for="regsiter"> Register</label><br>
         </form>
 
-        <button @click="clickLogin" type="submit" class="login-button">Login/Regsiter</button>
+        <button @click="clickLogin" type="submit" class="login-button">Login/Register</button>
     </div>
     <div v-if="isLoggedIn">
         <button @click="clickLogout" type="submit" class="login-button">Logout</button>
@@ -46,7 +46,7 @@ const isLoggedIn = ref(false);
 const isRegister = ref(false);
 
 /**
- * 
+ * Validates if the input is a valid email
  */
 function validateEmail() {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -54,21 +54,21 @@ function validateEmail() {
 }
 
 /**
- * 
+ * Validates if the input is 6 characters or longer
  */
 function validatePassword(){
     isPasswordValid.value = password.value.length >= 6;
 }
 
 /**
- * 
+ * Validates if the repeated password is the same
  */
 function validateRepeatPassword(){
     isRepeatPasswordValid.value = repeatPassword.value == password.value;
 }
 
 /**
- * 
+ * Sets login to true when the email and password are correct and the give credentals are valid
  */
 async function clickLogin() {
     const isLoginValid = await loginHandler.isCredentialsValid(email.value, password.value);
@@ -77,6 +77,9 @@ async function clickLogin() {
     }
 } 
 
+/**
+ * Sets login to false
+ */
 function clickLogout() {
     isLoggedIn.value = !isLoggedIn.value;
 }

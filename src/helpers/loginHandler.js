@@ -9,9 +9,9 @@ export default class LoginHandler{
     _registryHandler;
 
     /**
-     * 
-     * @param {string} email 
-     * @param {string} password 
+     * Checks if the login credentials exist in the registry
+     * @param {string} email Given email
+     * @param {string} password Given password
      */
     async isCredentialsValid(email, password){
         let valid = false;

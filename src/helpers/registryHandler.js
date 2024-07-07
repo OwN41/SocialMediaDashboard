@@ -3,7 +3,7 @@ export default class RegistryHandler{
     constructor(){}
 
     /**
-     * 
+     * Reads the registry.json file and returns it
      */
     async readRegistry() {
         let registry = undefined;
@@ -12,7 +12,7 @@ export default class RegistryHandler{
         .then((json) => {
             registry = json;
         });
-        
+
 
         return registry
     }

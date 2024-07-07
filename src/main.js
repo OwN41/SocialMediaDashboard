@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 
+import App from './App.vue'
 import Login from './components/login.vue'
 import Dashboard from './components/dashboard.vue'
 
